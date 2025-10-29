@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>Feedback List</title>
+</head>
+<body class="container mt-5">
+<h2>All Feedbacks</h2>
+<a class="btn btn-success mb-3" href="{% url 'feedback_create' %}">Add Feedback</a>
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+        <th>Actions</th>
+    </tr>
+    {% for feedback in feedbacks %}
+    <tr>
+        <td>{{ feedback.name }}</td>
+        <td>{{ feedback.email }}</td>
+        <td>{{ feedback.message }}</td>
+        <td>
+            <a class="btn btn-warning btn-sm" href="{% url 'feedback_update' feedback.id %}">Edit</a>
+            <a class="btn btn-danger btn-sm" href="{% url 'feedback_delete' feedback.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
